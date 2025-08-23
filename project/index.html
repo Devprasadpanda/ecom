@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Collective - Premium Urban Fashion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">Aura Collective</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-desktop">
+                    <a href="products.html?category=men" class="nav-link">Men</a>
+                    <a href="products.html?category=women" class="nav-link">Women</a>
+                    <a href="products.html?category=accessories" class="nav-link">Accessories</a>
+                    <a href="products.html?sale=true" class="nav-link">Sale</a>
+                </nav>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search products..." class="search-input">
+                    <button id="searchBtn" class="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Header Icons -->
+                <div class="header-icons">
+                    <a href="login.html" class="icon-btn user-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a>
+                    <a href="cart.html" class="icon-btn cart-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                    <button class="hamburger" id="hamburgerBtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav class="nav-mobile" id="mobileNav">
+                <div class="mobile-nav-content">
+                    <a href="products.html?category=men" class="mobile-nav-link">Men</a>
+                    <a href="products.html?category=women" class="mobile-nav-link">Women</a>
+                    <a href="products.html?category=accessories" class="mobile-nav-link">Accessories</a>
+                    <a href="products.html?sale=true" class="mobile-nav-link">Sale</a>
+                    <div class="mobile-nav-divider"></div>
+                    <a href="login.html" class="mobile-nav-link">Account</a>
+                    <div class="mobile-search">
+                        <input type="text" id="mobileSearchInput" placeholder="Search products..." class="mobile-search-input">
+                        <button id="mobileSearchBtn" class="mobile-search-btn">Search</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Style That Speaks</h1>
+            <p class="hero-subtitle">Discover premium urban fashion that defines your unique aesthetic</p>
+            <a href="products.html" class="hero-cta">Shop The Collection</a>
+        </div>
+        <div class="hero-scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="featured-categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Categories</h2>
+                <p class="section-subtitle">Explore our carefully curated collections designed for the modern lifestyle</p>
+            </div>
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Categories will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section class="new-arrivals">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">New Arrivals</h2>
+                <p class="section-subtitle">Discover the latest additions to our collection</p>
+            </div>
+            <div class="products-grid" id="newArrivalsGrid">
+                <!-- New arrivals will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Promise -->
+    <section class="brand-promise">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Promise</h2>
+                <p class="section-subtitle">We're committed to delivering exceptional value and service</p>
+            </div>
+            <div class="promise-grid">
+                <div class="promise-item">
+                    <div class="promise-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="promise-title">Sustainable Materials</h3>
+                    <p class="promise-description">Ethically sourced and environmentally conscious materials in every product.</p>
+                </div>
+                <div class="promise-item">
+                    <div class="promise-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16,8 20,8 23,11 23,16 16,16 16,8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="promise-title">Free Shipping</h3>
+                    <p class="promise-description">Complimentary shipping on all orders over $75 worldwide.</p>
+                </div>
+                <div class="promise-item">
+                    <div class="promise-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="1,4 1,10 7,10"></polyline>
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="promise-title">Easy Returns</h3>
+                    <p class="promise-description">30-day hassle-free returns and exchanges on all purchases.</p>
+                </div>
+                <div class="promise-item">
+                    <div class="promise-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="promise-title">Quality Guarantee</h3>
+                    <p class="promise-description">Premium quality assured with our lifetime craftsmanship warranty.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Join thousands of satisfied customers who love our products</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-item">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-quote">"The quality is exceptional and the style is exactly what I was looking for. Highly recommend!"</p>
+                    <p class="testimonial-author">Sarah Johnson</p>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-quote">"Fast shipping and amazing customer service. The products exceeded my expectations."</p>
+                    <p class="testimonial-author">Mike Chen</p>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-quote">"Love the minimalist design and sustainable approach. My new favorite brand!"</p>
+                    <p class="testimonial-author">Emma Davis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-title">Aura Collective</h3>
+                    <p class="footer-description">Premium urban fashion for the modern individual. Sustainable, stylish, and crafted with care.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4 class="footer-links-title">Quick Links</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#" class="footer-link">About Us</a></li>
+                        <li><a href="#" class="footer-link">Contact</a></li>
+                        <li><a href="#" class="footer-link">FAQ</a></li>
+                        <li><a href="#" class="footer-link">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4 class="footer-newsletter-title">Stay Updated</h4>
+                    <p class="footer-newsletter-description">Subscribe to get special offers and updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" class="newsletter-input">
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 Aura Collective. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#" class="footer-legal-link">Privacy Policy</a>
+                    <a href="#" class="footer-legal-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js" defer></script>
+</body>
+</html>

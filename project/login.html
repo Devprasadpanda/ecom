@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Aura Collective</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-page">
+        <div class="login-container">
+            <!-- Logo -->
+            <div class="login-logo">
+                <a href="index.html">Aura Collective</a>
+            </div>
+
+            <!-- Login Form -->
+            <div class="login-form-container">
+                <h1 class="login-title" id="loginTitle">Welcome Back</h1>
+                <p class="login-subtitle" id="loginSubtitle">Sign in to your account</p>
+
+                <form class="login-form" id="loginForm">
+                    <!-- Full Name Field (Hidden by default) -->
+                    <div class="form-group" id="nameGroup" style="display: none;">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Enter your full name">
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                    </div>
+
+                    <!-- Remember Me (Login only) -->
+                    <div class="form-group form-checkbox" id="rememberGroup">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe" name="rememberMe">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-primary btn-full" id="submitBtn">Sign In</button>
+
+                    <!-- Forgot Password (Login only) -->
+                    <div class="form-link" id="forgotPassword">
+                        <a href="#" class="link">Forgot your password?</a>
+                    </div>
+                </form>
+
+                <!-- Toggle Link -->
+                <div class="login-toggle">
+                    <p class="toggle-text" id="toggleText">Don't have an account?</p>
+                    <button class="toggle-btn" id="toggleBtn">Sign Up</button>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="login-features">
+                <div class="feature-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    <span>Secure & Protected</span>
+                </div>
+                <div class="feature-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <polygon points="16,8 20,8 23,11 23,16 16,16 16,8"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                    <span>Fast & Free Shipping</span>
+                </div>
+                <div class="feature-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="1,4 1,10 7,10"></polyline>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                    </svg>
+                    <span>Easy Returns</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
