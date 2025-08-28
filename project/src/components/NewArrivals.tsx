@@ -7,7 +7,7 @@ const NewArrivals: React.FC = () => {
   const newProducts = products.filter(product => product.isNew);
 
   return (
-    <section className="py-8 md:py-12 lg:py-16 bg-white">
+    <section className="py-10 md:py-14 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <motion.div 
           className="text-center mb-6 md:mb-8 lg:mb-12"
@@ -24,7 +24,7 @@ const NewArrivals: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 lg:gap-6">
           {newProducts.map((product, index) => (
             <motion.div
               key={product.id}

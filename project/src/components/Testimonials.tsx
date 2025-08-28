@@ -4,7 +4,7 @@ import { customers } from '../utils/mockData';
 
 const Testimonials: React.FC = () => {
   return (
-    <section className="py-8 md:py-12 lg:py-16 bg-white">
+    <section className="py-10 md:py-14 lg:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <motion.div 
           className="text-center mb-6 md:mb-8 lg:mb-12"
@@ -25,7 +25,7 @@ const Testimonials: React.FC = () => {
           {customers.map((customer, index) => (
             <motion.div
               key={customer.id}
-              className="bg-gray-50 p-4 md:p-6 rounded-lg"
+              className="bg-white p-5 md:p-6 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}

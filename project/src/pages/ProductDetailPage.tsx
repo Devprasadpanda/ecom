@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { products } from '../utils/mockData';
 import { useCart } from '../hooks/useCart';
+import { useToast } from '../context/ToastContext';
 import LazyImage from '../components/LazyImage';
 
 const ProductDetailPage: React.FC = () => {
@@ -31,6 +32,7 @@ const ProductDetailPage: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
   const { addToCart } = useCart();
+  const { showToast } = useToast();
 
   // Initialize selected options when product loads
   React.useEffect(() => {
@@ -65,7 +67,7 @@ const ProductDetailPage: React.FC = () => {
       return;
     }
     addToCart(product, selectedSize, selectedColor, quantity);
-    alert('Added to cart!');
+    showToast('Added to cart');
   };
 
   const discountPercentage = product.originalPrice 
@@ -78,16 +80,7 @@ const ProductDetailPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-4 lg:px-6 py-4">
-        {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
-          <Link to="/" className="hover:text-blue-600">Home</Link>
-          <span>/</span>
-          <Link to="/products" className="hover:text-blue-600">Products</Link>
-          <span>/</span>
-          <span className="text-gray-900 capitalize">{product.category}</span>
-          <span>/</span>
-          <span className="text-gray-900 truncate max-w-xs">{product.name}</span>
-        </nav>
+        {/* Breadcrumb removed as per request */}
 
         {/* Three Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">

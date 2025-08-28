@@ -27,7 +27,7 @@ const BrandPromise: React.FC = () => {
   ];
 
   return (
-    <section className="py-8 md:py-12 lg:py-16 bg-gray-50">
+    <section className="py-10 md:py-14 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <motion.div 
           className="text-center mb-6 md:mb-8 lg:mb-12"
@@ -48,14 +48,14 @@ const BrandPromise: React.FC = () => {
           {promises.map((promise, index) => (
             <motion.div
               key={index}
-              className="text-center p-4 md:p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="text-center p-5 md:p-6 bg-gray-50 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
               <div className="text-blue-600 mb-3 md:mb-4 flex justify-center">
-                <div className="w-8 h-8 md:w-10 md:h-10">
+                <div className="w-10 h-10 md:w-12 md:h-12">
                   {React.cloneElement(promise.icon, { size: window.innerWidth >= 768 ? 40 : 32 })}
                 </div>
               </div>

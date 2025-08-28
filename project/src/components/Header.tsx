@@ -57,7 +57,7 @@ const Header: React.FC = () => {
             >
               <ShoppingBag size={20} />
               {getTotalItems() > 0 && (
-                <span className="absolute -top-1 -right-1 bg-blue-600 text-white rounded-full w-4 h-4 md:w-5 md:h-5 flex items-center justify-center text-xs font-medium">
+                <span className="absolute -top-1 -right-1 bg-blue-600 text-white rounded-full min-w-4 h-4 md:min-w-5 md:h-5 px-1 flex items-center justify-center text-[10px] md:text-xs font-semibold">
                   {getTotalItems()}
                 </span>
               )}

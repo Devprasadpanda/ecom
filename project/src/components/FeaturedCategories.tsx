@@ -6,7 +6,7 @@ import LazyImage from './LazyImage';
 
 const FeaturedCategories: React.FC = () => {
   return (
-    <section className="py-8 md:py-12 lg:py-16 bg-gray-50">
+    <section className="py-10 md:py-14 lg:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <motion.div 
           className="text-center mb-6 md:mb-8 lg:mb-12"
@@ -23,7 +23,7 @@ const FeaturedCategories: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 lg:gap-6">
           {categories.map((category, index) => (
             <motion.div
               key={category.id}
@@ -34,20 +34,26 @@ const FeaturedCategories: React.FC = () => {
             >
               <Link
                 to={category.link}
-                className="group block relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+                className="group block relative overflow-hidden rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 bg-white"
               >
-                <div className="aspect-square bg-gray-200">
+                <div className="aspect-square bg-gray-100">
                   <LazyImage
                     src={category.image}
                     alt={category.name}
-                    className="h-32 md:h-48 lg:h-64 w-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                    className="h-36 md:h-48 lg:h-64 w-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h3 className="text-sm md:text-lg lg:text-2xl font-bold text-white text-center group-hover:scale-105 transition-transform duration-300 px-2">
-                    {category.name}
-                  </h3>
+                <div className="absolute inset-0 flex items-end">
+                  <div className="w-full p-3 md:p-4">
+                    <h3 className="text-base md:text-lg lg:text-xl font-semibold text-white mb-1">
+                      {category.name}
+                    </h3>
+                    <span className="inline-flex items-center text-xs md:text-sm text-white/80">
+                      Shop now
+                      <svg className="ml-1 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+                    </span>
+                  </div>
                 </div>
               </Link>
             </motion.div>

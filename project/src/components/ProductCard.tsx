@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ShoppingCart, Heart } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../hooks/useCart';
+import { useToast } from '../context/ToastContext';
 import LazyImage from './LazyImage';
 
 interface ProductCardProps {
@@ -11,11 +12,14 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart(product, product.sizes[0], product.colors[0]);
+    addToCart(product, product.sizes[0], product.colors[0], 1);
+    showToast('Added to cart');
   };
 
   const handleWishlist = (e: React.MouseEvent) => {
@@ -25,10 +29,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     console.log('Added to wishlist:', product.name);
   };
 
+  const handleOpenDetails = () => {
+    navigate(`/product/${product.id}`);
+  };
+
   return (
-    <Link 
-      to={`/product/${product.id}`}
-      className="group relative bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col block"
+    <div 
+      onClick={handleOpenDetails}
+      className="group relative bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col cursor-pointer"
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleOpenDetails();
+        }
+      }}
     >
       <div className="aspect-square w-full overflow-hidden bg-gray-200 relative">
         <LazyImage
@@ -100,7 +116,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         )}
       </div>
-    </Link>
+    </div>
   );
 };
 
