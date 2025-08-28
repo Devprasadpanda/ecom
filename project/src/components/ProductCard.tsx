@@ -14,37 +14,44 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     addToCart(product, product.sizes[0], product.colors[0]);
   };
 
+  const handleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // Add wishlist functionality here
+    console.log('Added to wishlist:', product.name);
+  };
+
   return (
-    <div className="group relative bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col">
-      <Link to={`/product/${product.id}`}>
-        <div className="aspect-square w-full overflow-hidden bg-gray-200 relative">
-          <LazyImage
-            src={product.images[0]}
-            alt={product.name}
-            className="h-40 md:h-48 lg:h-64 w-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-          />
-          {product.isNew && (
-            <span className="absolute top-1 md:top-2 left-1 md:left-2 bg-blue-600 text-white px-1.5 md:px-2 py-0.5 md:py-1 text-xs font-medium rounded">
-              New
-            </span>
-          )}
-          {product.originalPrice && (
-            <span className="absolute top-1 md:top-2 right-1 md:right-2 bg-red-500 text-white px-1.5 md:px-2 py-0.5 md:py-1 text-xs font-medium rounded">
-              Sale
-            </span>
-          )}
-        </div>
-      </Link>
+    <Link 
+      to={`/product/${product.id}`}
+      className="group relative bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col block"
+    >
+      <div className="aspect-square w-full overflow-hidden bg-gray-200 relative">
+        <LazyImage
+          src={product.images[0]}
+          alt={product.name}
+          className="h-40 md:h-48 lg:h-64 w-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+        />
+        {product.isNew && (
+          <span className="absolute top-1 md:top-2 left-1 md:left-2 bg-blue-600 text-white px-1.5 md:px-2 py-0.5 md:py-1 text-xs font-medium rounded">
+            New
+          </span>
+        )}
+        {product.originalPrice && (
+          <span className="absolute top-1 md:top-2 right-1 md:right-2 bg-red-500 text-white px-1.5 md:px-2 py-0.5 md:py-1 text-xs font-medium rounded">
+            Sale
+          </span>
+        )}
+      </div>
 
       <div className="p-2 md:p-3 lg:p-4 flex-1 flex flex-col">
-        <Link to={`/product/${product.id}`}>
-          <h3 className="text-xs md:text-sm font-medium text-gray-900 mb-1 hover:text-blue-600 transition-colors line-clamp-2">
-            {product.name}
-          </h3>
-        </Link>
+        <h3 className="text-xs md:text-sm font-medium text-gray-900 mb-1 hover:text-blue-600 transition-colors line-clamp-2">
+          {product.name}
+        </h3>
         <p className="text-xs md:text-sm text-gray-500 mb-2 capitalize">{product.category}</p>
         
         <div className="flex items-center justify-between mt-auto">
@@ -66,7 +73,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             >
               <ShoppingCart size={14} className="md:w-4 md:h-4" />
             </button>
-            <button className="hidden md:block p-1.5 md:p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-colors">
+            <button 
+              onClick={handleWishlist}
+              className="hidden md:block p-1.5 md:p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-colors"
+            >
               <Heart size={14} className="md:w-4 md:h-4" />
             </button>
           </div>
@@ -90,7 +100,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 };
 

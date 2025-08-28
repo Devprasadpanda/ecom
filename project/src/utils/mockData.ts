@@ -3,39 +3,39 @@ import { Product, Customer, Category } from '../types';
 export const categories: Category[] = [
   {
     id: '1',
-    name: 'T-Shirts',
-    image: 'https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg',
-    link: '/products?category=tshirts'
+    name: "Men's Collection",
+    image: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    link: '/products?category=men'
   },
   {
     id: '2',
-    name: 'Backpacks',
-    image: 'https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg',
-    link: '/products?category=backpacks'
+    name: "Women's Collection",
+    image: 'https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    link: '/products?category=women'
   },
   {
     id: '3',
-    name: 'Sneakers',
-    image: 'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg',
-    link: '/products?category=sneakers'
+    name: 'Accessories',
+    image: 'https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    link: '/products?category=accessories'
   },
   {
     id: '4',
-    name: 'Accessories',
-    image: 'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg',
-    link: '/products?category=accessories'
+    name: 'T-Shirts',
+    image: 'https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    link: '/products?category=tshirts'
   },
   {
     id: '5',
     name: 'Hoodies',
-    image: 'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg',
+    image: 'https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
     link: '/products?category=hoodies'
   },
   {
     id: '6',
-    name: 'Jeans',
-    image: 'https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg',
-    link: '/products?category=jeans'
+    name: 'Sneakers',
+    image: 'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    link: '/products?category=sneakers'
   }
 ];
 
@@ -48,8 +48,9 @@ export const products: Product[] = [
     originalPrice: 49,
     category: 'tshirts',
     images: [
-      'https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
-      'https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
+      'https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+      'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+      'https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
     ],
     description: 'A high-quality, 100% organic cotton tee designed for modern city life. Breathable, durable, and effortlessly stylish.',
     sizes: ['XS', 'S', 'M', 'L', 'XL'],

@@ -31,9 +31,19 @@ const ProductListingPage: React.FC = () => {
 
     // Category filter
     if (filters.category) {
-      filtered = filtered.filter(product => 
-        product.category.toLowerCase().includes(filters.category.toLowerCase())
-      );
+      if (filters.category === 'men') {
+        filtered = filtered.filter(product => 
+          ['tshirts', 'hoodies', 'jeans', 'sneakers'].includes(product.category)
+        );
+      } else if (filters.category === 'women') {
+        filtered = filtered.filter(product => 
+          ['tshirts', 'hoodies', 'jeans', 'sneakers'].includes(product.category)
+        );
+      } else {
+        filtered = filtered.filter(product => 
+          product.category.toLowerCase().includes(filters.category.toLowerCase())
+        );
+      }
     }
 
     // Price filter
