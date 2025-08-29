@@ -20,6 +20,7 @@ import {
 import { products } from '../utils/mockData';
 import { useCart } from '../hooks/useCart';
 import { useToast } from '../context/ToastContext';
+import { formatINR, toINR } from '../utils/currency';
 import LazyImage from '../components/LazyImage';
 
 const ProductDetailPage: React.FC = () => {
@@ -205,12 +206,12 @@ const ProductDetailPage: React.FC = () => {
             <div className="mb-6">
               <div className="flex items-baseline space-x-2 mb-2">
                 <span className="text-sm text-gray-600">Price:</span>
-                <span className="text-3xl font-bold text-red-600">${product.price}</span>
+                <span className="text-3xl font-bold text-red-600">{formatINR(toINR(product.price))}</span>
                 {product.originalPrice && (
                   <>
-                    <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
+                    <span className="text-lg text-gray-500 line-through">{formatINR(toINR(product.originalPrice))}</span>
                     <span className="text-sm bg-red-100 text-red-800 px-2 py-1 rounded">
-                      Save ${product.originalPrice - product.price}
+                      Save {formatINR(toINR(product.originalPrice - product.price))}
                     </span>
                   </>
                 )}
@@ -312,9 +313,9 @@ const ProductDetailPage: React.FC = () => {
                 {/* Price in Buy Box */}
                 <div className="mb-4">
                   <div className="flex items-baseline space-x-2 mb-1">
-                    <span className="text-2xl font-bold text-red-600">${product.price}</span>
+                    <span className="text-2xl font-bold text-red-600">{formatINR(toINR(product.price))}</span>
                     {product.originalPrice && (
-                      <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
+                      <span className="text-lg text-gray-500 line-through">{formatINR(toINR(product.originalPrice))}</span>
                     )}
                   </div>
                   <div className="text-sm text-gray-600">& FREE Shipping</div>
@@ -438,14 +439,14 @@ const ProductDetailPage: React.FC = () => {
                     <div className="w-12 h-12 bg-gray-200 rounded"></div>
                     <div className="flex-1">
                       <div className="text-sm font-medium">This item</div>
-                      <div className="text-sm text-gray-600">${product.price}</div>
+                      <div className="text-sm text-gray-600">{formatINR(toINR(product.price))}</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-12 h-12 bg-gray-200 rounded"></div>
                     <div className="flex-1">
                       <div className="text-sm font-medium">Related accessory</div>
-                      <div className="text-sm text-gray-600">$29.99</div>
+                      <div className="text-sm text-gray-600">{formatINR(2999)}</div>
                     </div>
                   </div>
                   <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium py-2 px-4 rounded-lg transition-colors text-sm">

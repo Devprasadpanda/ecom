@@ -5,6 +5,7 @@ import { Product } from '../types';
 import { useCart } from '../hooks/useCart';
 import { useToast } from '../context/ToastContext';
 import LazyImage from './LazyImage';
+import { formatINR, toINR } from '../utils/currency';
 
 interface ProductCardProps {
   product: Product;
@@ -73,11 +74,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="flex items-center justify-between mt-auto">
           <div className="flex items-center space-x-2">
             <span className="text-sm md:text-base lg:text-lg font-semibold text-gray-900">
-              ${product.price}
+              {formatINR(toINR(product.price))}
             </span>
             {product.originalPrice && (
               <span className="text-xs md:text-sm text-gray-500 line-through">
-                ${product.originalPrice}
+                {formatINR(toINR(product.originalPrice))}
               </span>
             )}
           </div>

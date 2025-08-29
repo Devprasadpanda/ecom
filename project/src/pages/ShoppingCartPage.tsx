@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
 import { useCart } from '../hooks/useCart';
 import LazyImage from '../components/LazyImage';
+import { formatINR, toINR } from '../utils/currency';
 
 const ShoppingCartPage: React.FC = () => {
-  const { cartItems, updateQuantity, removeFromCart, getTotalPrice, getTotalItems } = useCart();
+  const { cartItems, updateQuantity, removeFromCart, getTotalPrice, getTotalItems, clearCart } = useCart();
 
   if (cartItems.length === 0) {
     return (
@@ -64,7 +65,7 @@ const ShoppingCartPage: React.FC = () => {
                             {item.selectedSize}, {item.selectedColor}
                           </p>
                           <p className="text-sm font-semibold text-gray-900 mt-1">
-                            ${item.product.price}
+                            {formatINR(toINR(item.product.price))}
                           </p>
                         </div>
                         <button
@@ -107,7 +108,7 @@ const ShoppingCartPage: React.FC = () => {
                           </button>
                         </div>
                         <p className="text-sm font-semibold text-gray-900">
-                          ${(item.product.price * item.quantity).toFixed(2)}
+                          {formatINR(toINR(item.product.price * item.quantity))}
                         </p>
                       </div>
                     </div>
@@ -133,7 +134,7 @@ const ShoppingCartPage: React.FC = () => {
                         {item.selectedSize}, {item.selectedColor}
                       </p>
                       <p className="text-base md:text-lg font-semibold text-gray-900 mt-2">
-                        ${item.product.price}
+                        {formatINR(toINR(item.product.price))}
                       </p>
                     </div>
 
@@ -166,7 +167,7 @@ const ShoppingCartPage: React.FC = () => {
 
                     <div className="text-right">
                       <p className="text-base md:text-lg font-semibold text-gray-900">
-                        ${(item.product.price * item.quantity).toFixed(2)}
+                        {formatINR(toINR(item.product.price * item.quantity))}
                       </p>
                       <button
                         onClick={() => removeFromCart(
@@ -183,6 +184,15 @@ const ShoppingCartPage: React.FC = () => {
                   </div>
                 ))}
               </div>
+              {/* Clear Cart */}
+              <div className="px-4 md:px-6 py-3 md:py-4 border-t border-gray-200 flex justify-end">
+                <button
+                  onClick={clearCart}
+                  className="text-red-600 hover:text-red-700 text-sm md:text-base font-medium"
+                >
+                  Clear Cart
+                </button>
+              </div>
             </div>
           </div>
 
@@ -194,7 +204,7 @@ const ShoppingCartPage: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-sm md:text-base text-gray-600">Subtotal</span>
-                  <span className="text-sm md:text-base font-medium">${getTotalPrice().toFixed(2)}</span>
+                  <span className="text-sm md:text-base font-medium">{formatINR(toINR(getTotalPrice()))}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-sm md:text-base text-gray-600">Shipping</span>
@@ -203,7 +213,7 @@ const ShoppingCartPage: React.FC = () => {
                 <div className="border-t border-gray-200 pt-4">
                   <div className="flex justify-between">
                     <span className="text-base md:text-lg font-medium">Total</span>
-                    <span className="text-base md:text-lg font-bold">${getTotalPrice().toFixed(2)}</span>
+                    <span className="text-base md:text-lg font-bold">{formatINR(toINR(getTotalPrice()))}</span>
                   </div>
                 </div>
               </div>

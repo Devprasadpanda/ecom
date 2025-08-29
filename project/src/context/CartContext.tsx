@@ -11,16 +11,41 @@ type CartContextValue = {
   clearCart: () => void;
 };
 
-const CartContext = createContext<CartContextValue | null>(null);
+const defaultCartContext: CartContextValue = {
+  cartItems: [],
+  addToCart: () => {},
+  removeFromCart: () => {},
+  updateQuantity: () => {},
+  getTotalItems: () => 0,
+  getTotalPrice: () => 0,
+  clearCart: () => {}
+};
+
+const CartContext = createContext<CartContextValue>(defaultCartContext);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const STORAGE_KEY = 'aura-cart-v2';
+
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
-    const saved = localStorage.getItem('aura-cart');
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return [];
+      const parsed = JSON.parse(saved);
+      const isValid = Array.isArray(parsed) && parsed.every((it: any) => it && it.product && it.selectedSize !== undefined && it.selectedColor !== undefined && typeof it.quantity === 'number');
+      return isValid ? parsed : [];
+    } catch {
+      // Corrupted storage; reset
+      localStorage.removeItem(STORAGE_KEY);
+      return [];
+    }
   });
 
   useEffect(() => {
-    localStorage.setItem('aura-cart', JSON.stringify(cartItems));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cartItems));
+    } catch {
+      // ignore quota/storage errors
+    }
   }, [cartItems]);
 
   const addToCart = (product: Product, selectedSize: string, selectedColor: string, quantity: number = 1) => {
@@ -76,12 +101,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   );
 };
 
-export const useCartContext = () => {
-  const ctx = useContext(CartContext);
-  if (!ctx) {
-    throw new Error('useCartContext must be used within CartProvider');
-  }
-  return ctx;
-};
+export const useCartContext = () => useContext(CartContext);
 
 

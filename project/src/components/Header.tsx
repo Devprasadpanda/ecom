@@ -48,9 +48,9 @@ const Header: React.FC = () => {
             <button className="hidden sm:block p-2 text-gray-700 hover:text-blue-600 transition-colors">
               <Search size={20} />
             </button>
-            <button className="hidden sm:block p-2 text-gray-700 hover:text-blue-600 transition-colors">
+            <Link to="/auth" className="hidden sm:block p-2 text-gray-700 hover:text-blue-600 transition-colors">
               <User size={20} />
-            </button>
+            </Link>
             <Link 
               to="/cart" 
               className="relative p-2 text-gray-700 hover:text-blue-600 transition-colors"

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Filter, SortAsc } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
@@ -13,57 +13,42 @@ const ProductListingPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
     category: searchParams.get('category') || '',
-    priceRange: [0, 500],
-    sizes: [] as string[],
-    colors: [] as string[]
+    sale: searchParams.get('sale') === 'true'
   });
+
+  // Sync filters with URL changes so switching Men/Women/Accessories/Sale updates the list
+  useEffect(() => {
+    setFilters({
+      category: searchParams.get('category') || '',
+      sale: searchParams.get('sale') === 'true'
+    });
+  }, [searchParams]);
 
   const filteredProducts = useMemo(() => {
     let filtered = products;
 
-    // Search filter
-    if (searchTerm) {
-      filtered = filtered.filter(product =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
+    // Search removed
 
-    // Category filter
+    // Category filter with Men/Women mapping
     if (filters.category) {
-      if (filters.category === 'men') {
-        filtered = filtered.filter(product => 
-          ['tshirts', 'hoodies', 'jeans', 'sneakers'].includes(product.category)
-        );
-      } else if (filters.category === 'women') {
-        filtered = filtered.filter(product => 
-          ['tshirts', 'hoodies', 'jeans', 'sneakers'].includes(product.category)
-        );
+      const apparel = new Set(['tshirts', 'hoodies', 'jeans', 'sneakers']);
+      if (filters.category === 'men' || filters.category === 'women') {
+        filtered = filtered.filter(p => apparel.has(p.category));
       } else {
-        filtered = filtered.filter(product => 
-          product.category.toLowerCase().includes(filters.category.toLowerCase())
-        );
+        filtered = filtered.filter(p => p.category.toLowerCase().includes(filters.category.toLowerCase()));
       }
     }
 
-    // Price filter
-    filtered = filtered.filter(product => 
-      product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1]
-    );
-
-    // Size filter
-    if (filters.sizes.length > 0) {
-      filtered = filtered.filter(product =>
-        product.sizes.some(size => filters.sizes.includes(size))
-      );
+    // Sale filter
+    if (filters.sale) {
+      filtered = filtered.filter(p => p.originalPrice && p.originalPrice > p.price);
     }
 
-    // Color filter
-    if (filters.colors.length > 0) {
-      filtered = filtered.filter(product =>
-        product.colors.some(color => filters.colors.includes(color))
-      );
-    }
+    // Price filter removed
+
+    // Size filter removed
+
+    // Color filter removed
 
     // Sorting
     switch (sortBy) {
@@ -78,14 +63,9 @@ const ProductListingPage: React.FC = () => {
     }
   }, [filters, sortBy]);
 
-  const availableSizes = [...new Set(products.flatMap(p => p.sizes))];
-  const availableColors = [...new Set(products.flatMap(p => p.colors))];
+  // removed: availableSizes/Colors
 
-  // Debounced search handler
-  const debouncedSearch = useMemo(
-    () => debounce((term: string) => setSearchTerm(term), 300),
-    []
-  );
+  // Search removed
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -101,15 +81,7 @@ const ProductListingPage: React.FC = () => {
             {filters.category ? `${filters.category.charAt(0).toUpperCase() + filters.category.slice(1)} Collection` : 'All Products'}
           </h1>
           
-          {/* Search Bar */}
-          <div className="mb-3 md:mb-4">
-            <input
-              type="text"
-              placeholder="Search products..."
-              onChange={(e) => debouncedSearch(e.target.value)}
-              className="w-full max-w-md px-3 md:px-4 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-            />
-          </div>
+          {/* Search removed */}
           
           <p className="text-sm md:text-base text-gray-600">
             Showing {filteredProducts.length} products
@@ -117,96 +89,7 @@ const ProductListingPage: React.FC = () => {
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-8">
-          {/* Filters Sidebar */}
-          <motion.div 
-            className={`lg:w-64 ${showFilters ? 'block' : 'hidden lg:block'} ${showFilters ? 'mb-4' : ''}`}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="bg-white p-4 md:p-6 rounded-lg shadow-sm">
-              <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-3 md:mb-4">Filters</h3>
-              
-              {/* Price Range */}
-              <div className="mb-4 md:mb-6">
-                <h4 className="text-sm md:text-base font-medium text-gray-900 mb-2">Price Range</h4>
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="range"
-                    min="0"
-                    max="500"
-                    value={filters.priceRange[1]}
-                    onChange={(e) => setFilters(prev => ({
-                      ...prev,
-                      priceRange: [0, parseInt(e.target.value)]
-                    }))}
-                    className="w-full"
-                  />
-                  <span className="text-sm text-gray-600">${filters.priceRange[1]}</span>
-                </div>
-              </div>
-
-              {/* Sizes */}
-              <div className="mb-4 md:mb-6">
-                <h4 className="text-sm md:text-base font-medium text-gray-900 mb-2">Size</h4>
-                <div className="space-y-2">
-                  {availableSizes.map(size => (
-                    <label key={size} className="flex items-center">
-                      <input
-                        type="checkbox"
-                        checked={filters.sizes.includes(size)}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            setFilters(prev => ({
-                              ...prev,
-                              sizes: [...prev.sizes, size]
-                            }));
-                          } else {
-                            setFilters(prev => ({
-                              ...prev,
-                              sizes: prev.sizes.filter(s => s !== size)
-                            }));
-                          }
-                        }}
-                        className="mr-2"
-                      />
-                      <span className="text-sm text-gray-700">{size}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Colors */}
-              <div className="mb-4 md:mb-6">
-                <h4 className="text-sm md:text-base font-medium text-gray-900 mb-2">Color</h4>
-                <div className="space-y-2">
-                  {availableColors.map(color => (
-                    <label key={color} className="flex items-center">
-                      <input
-                        type="checkbox"
-                        checked={filters.colors.includes(color)}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            setFilters(prev => ({
-                              ...prev,
-                              colors: [...prev.colors, color]
-                            }));
-                          } else {
-                            setFilters(prev => ({
-                              ...prev,
-                              colors: prev.colors.filter(c => c !== color)
-                            }));
-                          }
-                        }}
-                        className="mr-2"
-                      />
-                      <span className="text-sm text-gray-700">{color}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          {/* Filters removed */}
 
           {/* Products Grid */}
           <div className="flex-1">

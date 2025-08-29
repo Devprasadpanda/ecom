@@ -4,13 +4,16 @@ import App from './App.tsx';
 import './index.css';
 import { CartProvider } from './context/CartContext';
 import { ToastProvider } from './context/ToastContext';
+import ErrorBoundary from './components/ErrorBoundary';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <CartProvider>
-      <ToastProvider>
-        <App />
-      </ToastProvider>
-    </CartProvider>
+    <ErrorBoundary>
+      <CartProvider>
+        <ToastProvider>
+          <App />
+        </ToastProvider>
+      </CartProvider>
+    </ErrorBoundary>
   </StrictMode>
 ); 
