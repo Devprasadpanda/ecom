@@ -28,7 +28,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-14 md:h-16">
           {/* Logo */}
@@ -122,12 +122,32 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation - Full Screen Overlay */}
+            {/* Mobile Navigation - Full Screen Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white md:hidden">
-          <div className="flex flex-col h-full">
-            {/* Header with close button */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+        <>
+          {/* Backdrop */}
+          <div className="fixed inset-0 z-[60] bg-black/20 md:hidden" onClick={() => setIsMenuOpen(false)} />
+          {/* Menu */}
+          <div 
+            className="fixed inset-0 z-[70] md:hidden shadow-2xl w-screen h-screen" 
+            style={{ 
+              backgroundColor: 'white',
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              width: '100vw',
+              height: '100vh',
+              zIndex: 70
+            }}
+          >
+            <div 
+              className="flex flex-col h-full w-full" 
+              style={{ backgroundColor: 'white', height: '100vh', width: '100vw' }}
+            >
+                          {/* Header with close button */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white" style={{ backgroundColor: 'white' }}>
               <Link 
                 to="/" 
                 className="text-xl font-bold text-gray-900"
@@ -144,7 +164,7 @@ const Header: React.FC = () => {
             </div>
 
             {/* Navigation Links */}
-            <nav className="flex-1 px-4 py-6">
+            <nav className="flex-1 px-4 py-6 bg-white" style={{ backgroundColor: 'white' }}>
               <div className="space-y-1">
                 {navLinks.map((link) => (
                   <Link
@@ -201,7 +221,7 @@ const Header: React.FC = () => {
             </nav>
 
             {/* Footer with cart */}
-            <div className="border-t border-gray-200 p-4">
+            <div className="border-t border-gray-200 p-4 bg-white" style={{ backgroundColor: 'white' }}>
               <Link
                 to="/cart"
                 className="flex items-center justify-between w-full px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -217,6 +237,7 @@ const Header: React.FC = () => {
             </div>
           </div>
         </div>
+        </>
       )}
       
       {/* Click outside to close profile menu */}

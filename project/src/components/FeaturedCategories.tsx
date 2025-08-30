@@ -40,7 +40,7 @@ const FeaturedCategories: React.FC = () => {
                   <LazyImage
                     src={category.image}
                     alt={category.name}
-                    className="h-36 md:h-48 lg:h-64 w-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                 </div>
